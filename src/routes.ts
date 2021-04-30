@@ -5,10 +5,10 @@ const routes = Router()
 
 const usersController = new UsersController()
 
-routes.get('/users/:name/:lastname?', (req, res) => usersController.findUsers)
-routes.get('/users/:nickname', (req, res) => usersController.findUser)
-routes.post('/users', (req, res) => usersController.createUser)
-routes.put('/users/:id', (req, res) => usersController.updateUser)
-routes.delete('/users/:id', (req, res) => usersController.deleteUser)
+routes.get('/users/nickname/:nickname', usersController.findUser)
+routes.get('/users/:name/:lastname?', usersController.findUsers)
+routes.post('/users', usersController.createUser)
+routes.put('/users/:id', usersController.updateUser)
+routes.delete('/users/:id', usersController.deleteUser)
 
 export default routes
