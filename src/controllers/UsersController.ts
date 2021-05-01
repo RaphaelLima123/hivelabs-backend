@@ -35,12 +35,23 @@ class UsersController {
     return res.json(user)
   }
 
-  async updateUser(req: Request, res: Response) {
+  // async updateUser(req: Request, res: Response) {
+  //   const { id } = req.params
+
+  //   const usersService = new UsersService()
+
+  //   const user = usersService.update()
+
+  //   return res.json(user)
+  // }
+
+  async updateUserNickname(req: Request, res: Response) {
     const { id } = req.params
+    const { nickname } = req.body
 
     const usersService = new UsersService()
 
-    const user = usersService.update()
+    const user = await usersService.updateUserNickname({ id, nickname })
 
     return res.json(user)
   }

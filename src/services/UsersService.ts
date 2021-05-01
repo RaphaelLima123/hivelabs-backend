@@ -19,10 +19,14 @@ interface IUsersFind {
   lastname?: string
 }
 
-interface IUserUpdate {
+// interface IUserUpdate {
+//   id: string
+//   lastname?: string
+//   address?: string
+// }
+
+interface IUserUpdateNickname {
   id: string
-  lastname?: string
-  address?: string
   nickname?: string
 }
 
@@ -70,13 +74,23 @@ class UsersService {
     return user
   }
 
-  async updateUser({
+  // async updateUser({ id, lastname, address }: IUserUpdate): Promise<User> {
+  //   const usersRepository = getCustomRepository(UsersRepository)
+  // }
+
+  async updateUserNickname({
     id,
-    lastname,
-    address,
     nickname
-  }: IUserUpdate): Promise<User> {
+  }: IUserUpdateNickname): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository)
+
+    const user = await usersRepository.findOne(id)
+
+    Object.assign(user, { nickname })
+
+    await usersRepository.save(user)
+
+    return user
   }
 
   async deleteUser({ id }: IUserDelete): Promise<User> {
