@@ -5,6 +5,7 @@
   "username": "postgres",
   "password": "postgres",
   "database": "hivelabsdb",
+  "synchronize": true,
   "entities": [
     "./src/entities/*.ts"
   ],

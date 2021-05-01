@@ -10,7 +10,6 @@ export class CreateUsers1619720600229 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
-            isUnique: true,
             generationStrategy: 'uuid',
             default: `uuid_generate_v4()`
           },

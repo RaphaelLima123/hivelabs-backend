@@ -35,9 +35,24 @@ class UsersController {
     return res.json(user)
   }
 
-  async updateUser(req: Request, res: Response) {}
+  async updateUser(req: Request, res: Response) {
+    const { id } = req.params
 
-  async deleteUser(req: Request, res: Response) {}
+    const usersService = new UsersService()
+
+    const user = usersService.update()
+
+    return res.json(user)
+  }
+
+  async deleteUser(req: Request, res: Response) {
+    const { id } = req.params
+
+    const usersService = new UsersService()
+    const user = await usersService.deleteUser({ id })
+
+    res.json(user)
+  }
 }
 
 export { UsersController }

@@ -19,6 +19,17 @@ interface IUsersFind {
   lastname?: string
 }
 
+interface IUserUpdate {
+  id: string
+  lastname?: string
+  address?: string
+  nickname?: string
+}
+
+interface IUserDelete {
+  id: string
+}
+
 class UsersService {
   async findUser({ nickname }: IUserFind): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository)
@@ -56,6 +67,25 @@ class UsersService {
     })
 
     await usersRepository.save(user)
+    return user
+  }
+
+  async updateUser({
+    id,
+    lastname,
+    address,
+    nickname
+  }: IUserUpdate): Promise<User> {
+    const usersRepository = getCustomRepository(UsersRepository)
+  }
+
+  async deleteUser({ id }: IUserDelete): Promise<User> {
+    const usersRepository = getCustomRepository(UsersRepository)
+
+    const user = await usersRepository.findOne(id)
+
+    await usersRepository.delete({ id: user.id })
+
     return user
   }
 }
