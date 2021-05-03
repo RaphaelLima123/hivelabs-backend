@@ -65,10 +65,11 @@ Quando as mensagens: "Servidor rodando na porta 3333" e "Banco de dados conectad
 
 ## Observações
 
-Vale lembrar que para consumir as API's desta aplicação será necessário uma ferramenta que faz requisições, recomendo utilizar o insomnia (https://insomnia.rest/download) ou algum de sua preferência. É interessante também possuir uma ferramente de administração de banco de dados como o Dbeaver (https://dbeaver.io/) ou alguma de sua preferência para que possa visualizar o banco de dados
+Vale lembrar que para consumir as API's desta aplicação será necessário uma ferramenta que faz requisições, recomendo utilizar o insomnia (https://insomnia.rest/download) ou algum de sua preferência. É interessante também possuir uma ferramente de administração de banco de dados como o Dbeaver (https://dbeaver.io/) ou alguma de sua preferência para que possa visualizar o banco de dados.
 
 # API, suas rotas e parâmetros
 
+Uma breve demonstração de como utilizar esta API na live demo: https://youtu.be/AHMuyldAVV4 .
 Os parâmetros estão representados por ':' antes do nome, como por exemplo localhost:3333/users/:id é o parâmetro id na URL da API. As rotas disponíveis são:
 
 ### GET '/users/nickname/:nickname
