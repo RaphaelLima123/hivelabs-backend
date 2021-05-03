@@ -21,68 +21,53 @@ class UsersController {
   }
 
   async createUser(req: Request, res: Response): Promise<Response> {
-    try {
-      const { name, lastname, nickname, address, bio } = req.body
+    const { name, lastname, nickname, address, bio } = req.body
 
-      const usersService = new UsersService()
-      const createUser = await usersService.createUser({
-        name,
-        lastname,
-        nickname,
-        address,
-        bio
-      })
+    const usersService = new UsersService()
+    const createUser = await usersService.createUser({
+      name,
+      lastname,
+      nickname,
+      address,
+      bio
+    })
 
-      return res.json(createUser)
-    } catch (err) {
-      return res.status(err.statusCode).json({ error: err.message })
-    }
+    return res.json(createUser)
   }
 
   async updateUser(req: Request, res: Response): Promise<Response> {
-    try {
-      const { id } = req.params
-      const { lastname, address } = req.body
+    const { id } = req.params
+    const { lastname, address } = req.body
 
-      const usersService = new UsersService()
+    const usersService = new UsersService()
 
-      const userUpdate = await usersService.updateUser({
-        id,
-        lastname,
-        address
-      })
+    const userUpdate = await usersService.updateUser({
+      id,
+      lastname,
+      address
+    })
 
-      return res.json(userUpdate)
-    } catch (err) {
-      return res.status(err.statusCode).json({ error: err.message })
-    }
+    return res.json(userUpdate)
   }
 
   async updateUserNickname(req: Request, res: Response): Promise<Response> {
-    try {
-      const { id } = req.params
+    const { id } = req.params
+    const { nickname } = req.body
 
-      const usersService = new UsersService()
+    const usersService = new UsersService()
 
-      const userUpdate = await usersService.updateUserNickname({ id })
+    const userUpdate = await usersService.updateUserNickname({ id, nickname })
 
-      return res.json(userUpdate)
-    } catch (err) {
-      return res.status(err.statusCode).json({ error: err.message })
-    }
+    return res.json(userUpdate)
   }
 
   async deleteUser(req: Request, res: Response): Promise<Response> {
-    try {
-      const { id } = req.params
+    const { id } = req.params
 
-      const usersService = new UsersService()
-      const userDelete = await usersService.deleteUser({ id })
+    const usersService = new UsersService()
+    const userDelete = await usersService.deleteUser({ id })
 
-      res.json(userDelete)
-    } catch (err) {
-      return res.status(err.statusCode).json({ error: err.message })
-    }
+    return res.json(userDelete)
   }
 }
 

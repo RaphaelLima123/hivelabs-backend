@@ -28,8 +28,8 @@ interface IUsersFind {
 
 interface IUserUpdate {
   id: string
-  lastname?: string
-  address?: string
+  lastname: string
+  address: string
 }
 
 interface IUserUpdateReturn {
@@ -40,6 +40,7 @@ interface IUserUpdateReturn {
 
 interface IUserUpdateNickname {
   id: string
+  nickname: string
 }
 
 interface IUserUpdateNicknameReturn {
@@ -58,19 +59,32 @@ class UsersService {
   async findUser({ nickname }: IUserFind): Promise<IUserFindReturn> {
     const usersRepository = getCustomRepository(UsersRepository)
     const user = await usersRepository.findOne({ where: { nickname } })
+    if (!user) {
+      throw new AppError('Usuário não encontrado!')
+    }
 
     return { name: user.name, lastname: user.lastname, nickname: user.nickname }
   }
 
   async findUsers({ name, lastname }: IUsersFind): Promise<User[]> {
     const usersRepository = getCustomRepository(UsersRepository)
-    const users = await usersRepository.find({
-      where: {
-        name: name,
-        lastname: lastname
-      }
-    })
-    return users
+
+    if (lastname) {
+      const users = await usersRepository.find({
+        where: {
+          name: name,
+          lastname: lastname
+        }
+      })
+      return users
+    } else {
+      const users = await usersRepository.find({
+        where: {
+          name: name
+        }
+      })
+      return users
+    }
   }
 
   async createUser({
@@ -124,7 +138,8 @@ class UsersService {
   }
 
   async updateUserNickname({
-    id
+    id,
+    nickname
   }: IUserUpdateNickname): Promise<IUserUpdateNicknameReturn> {
     const usersRepository = getCustomRepository(UsersRepository)
 
@@ -132,8 +147,6 @@ class UsersService {
     if (!user) {
       throw new AppError(`O usuário a ser alterado não existe`)
     }
-
-    const nickname = user.nickname
 
     Object.assign(user, { nickname })
 
