@@ -21,48 +21,68 @@ class UsersController {
   }
 
   async createUser(req: Request, res: Response): Promise<Response> {
-    const { name, lastname, nickname, address, bio } = req.body
+    try {
+      const { name, lastname, nickname, address, bio } = req.body
 
-    const usersService = new UsersService()
-    const user = await usersService.createUser({
-      name,
-      lastname,
-      nickname,
-      address,
-      bio
-    })
+      const usersService = new UsersService()
+      const createUser = await usersService.createUser({
+        name,
+        lastname,
+        nickname,
+        address,
+        bio
+      })
 
-    return res.json(user)
+      return res.json(createUser)
+    } catch (err) {
+      return res.status(err.statusCode).json({ error: err.message })
+    }
   }
 
-  // async updateUser(req: Request, res: Response) {
-  //   const { id } = req.params
+  async updateUser(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params
+      const { lastname, address } = req.body
 
-  //   const usersService = new UsersService()
+      const usersService = new UsersService()
 
-  //   const user = usersService.update()
+      const userUpdate = await usersService.updateUser({
+        id,
+        lastname,
+        address
+      })
 
-  //   return res.json(user)
-  // }
-
-  async updateUserNickname(req: Request, res: Response) {
-    const { id } = req.params
-    const { nickname } = req.body
-
-    const usersService = new UsersService()
-
-    const user = await usersService.updateUserNickname({ id, nickname })
-
-    return res.json(user)
+      return res.json(userUpdate)
+    } catch (err) {
+      return res.status(err.statusCode).json({ error: err.message })
+    }
   }
 
-  async deleteUser(req: Request, res: Response) {
-    const { id } = req.params
+  async updateUserNickname(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params
 
-    const usersService = new UsersService()
-    const user = await usersService.deleteUser({ id })
+      const usersService = new UsersService()
 
-    res.json(user)
+      const userUpdate = await usersService.updateUserNickname({ id })
+
+      return res.json(userUpdate)
+    } catch (err) {
+      return res.status(err.statusCode).json({ error: err.message })
+    }
+  }
+
+  async deleteUser(req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params
+
+      const usersService = new UsersService()
+      const userDelete = await usersService.deleteUser({ id })
+
+      res.json(userDelete)
+    } catch (err) {
+      return res.status(err.statusCode).json({ error: err.message })
+    }
   }
 }
 
