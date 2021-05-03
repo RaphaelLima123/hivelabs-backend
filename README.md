@@ -69,7 +69,11 @@ Vale lembrar que para consumir as API's desta aplicação será necessário uma 
 
 # API, suas rotas e parâmetros
 
+<<<<<<< HEAD
 Os parâmetros estão representados por ':' antes do nome, como por exemplo localhost:3333/teste/:id é o parâmetro id na URL da API. As API's disponíveis são:
+=======
+os parâmetros estão representados por ':' antes do nome, como por exemplo localhost:3333/teste/:id é o parâmetro id na URL da API. As API's disponíveis são:
+>>>>>>> ae44be26531f35bdc55ffbd979af8b113bf78327
 
 ### GET '/users/nickname/:nickname
 
