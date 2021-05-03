@@ -65,7 +65,7 @@ Quando as mensagens: "Servidor rodando na porta 3333" e "Banco de dados conectad
 
 ## Observações
 
-Vale lembrar que para consumir as API's desta aplicação será necessário uma ferramenta que faz requisições, recomendo utilizar o insomnia (https://insomnia.rest/download) ou algum de sua preferência.
+Vale lembrar que para consumir as API's desta aplicação será necessário uma ferramenta que faz requisições, recomendo utilizar o insomnia (https://insomnia.rest/download) ou algum de sua preferência. É interessante também possuir uma ferramente de administração de banco de dados como o Dbeaver (https://dbeaver.io/) ou alguma de sua preferência para que possa visualizar o banco de dados
 
 # API, suas rotas e parâmetros
 
